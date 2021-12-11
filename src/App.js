@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Style
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -12,15 +12,23 @@ import 'react-toastify/dist/ReactToastify.css'
 import ShoppingCart from './section/ShoppingCart';
 
 export default function App() {
+  const [isLoaded, setLoaded] = useState(false)
   useEffect(() => {
     if (localStorage.getItem("wishlist") === null) {
       localStorage.setItem("wishlist", JSON.stringify([]))
     }
+    setLoaded(true)
   }, [])
-  return (
-    <>
-      <ShoppingCart />
-      <ToastContainer />
+  if (!isLoaded) {
+    return <>
+      Loading...
     </>
-  );
+  } else {
+    return (
+      <>
+        <ShoppingCart />
+        <ToastContainer />
+      </>
+    );
+  }
 }
