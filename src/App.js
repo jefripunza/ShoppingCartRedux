@@ -21,7 +21,7 @@ export default function App() {
   }, [])
   if (!isLoaded) {
     return <>
-      Loading...
+      Loading... 
     </>
   } else {
     return (
